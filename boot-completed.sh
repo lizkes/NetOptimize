@@ -43,7 +43,8 @@ apply_sysctl() {
 
 apply_sysctl
 
-for i in $(seq 1 4); do
+while true; do
   sleep 60
-  apply_sysctl
+  sysctl -w net.ipv4.tcp_rmem="8192 131072 31457280"
+  sysctl -w net.ipv4.tcp_wmem="8192 131072 31457280"
 done &
