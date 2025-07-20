@@ -3,11 +3,13 @@ name: Release
 on:
   push:
     tags:
-      - "*" # 任何 tag 推送时触发
+      - "v*"
 
 jobs:
   build_release:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
