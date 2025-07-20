@@ -1,0 +1,7 @@
+id=netopt
+name=网络优化
+version=1.0
+versionCode=1
+author=Lizkes
+description=网络优化，启用BBR和Cake
+skip_mount=true
