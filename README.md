@@ -14,7 +14,6 @@
 .
 ├─ boot-completed.sh   # 主脚本，负责循环调用 apply_sysctl 并应用网络优化
 ├─ module.prop         # KernelSU 模块描述文件
-└─ NetOptimize.zip     # 已打包的可刷入模块（可选）
 ```
 
 ## 安装方法
