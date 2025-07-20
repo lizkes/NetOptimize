@@ -1,3 +1,13 @@
+set_sysctl_if_needed() {
+  local key="$1"
+  local desired="$2"
+  local current
+  current=$(sysctl -n "$key")
+  if [ "$current" != "$desired" ]; then
+    sysctl -w "$key=$desired"
+  fi
+}
+
 apply_sysctl() {
   sysctl -w net.core.default_qdisc=fq_codel
   sysctl -w net.ipv4.tcp_congestion_control=bbr
@@ -45,6 +55,6 @@ apply_sysctl
 
 while true; do
   sleep 60
-  sysctl -w net.ipv4.tcp_rmem="8192 131072 31457280"
-  sysctl -w net.ipv4.tcp_wmem="8192 131072 31457280"
+  set_sysctl_if_needed net.ipv4.tcp_rmem "8192 131072 31457280"
+  set_sysctl_if_needed net.ipv4.tcp_wmem "8192 131072 31457280"
 done &
